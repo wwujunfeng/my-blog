@@ -1,71 +1,3 @@
-<template>
-  <header class="header" :class="{ scrolled: isScrolled }">
-    <div class="container">
-      <div class="header-content">
-        <a href="#home" class="logo">
-          Arter
-        </a>
-        <nav class="nav">
-          <ul class="nav-list" :class="{ active: menuOpen }">
-            <li class="nav-item">
-              <a href="#home" class="nav-link" @click="closeMenu">首页</a>
-            </li>
-            <li class="nav-item">
-              <a href="#about" class="nav-link" @click="closeMenu">关于</a>
-            </li>
-            <li class="nav-item">
-              <a href="#portfolio" class="nav-link" @click="closeMenu">作品集</a>
-            </li>
-            <li class="nav-item">
-              <a href="#blog" class="nav-link" @click="closeMenu">博客</a>
-            </li>
-            <li class="nav-item">
-              <a href="#contact" class="nav-link" @click="closeMenu">联系</a>
-            </li>
-          </ul>
-        </nav>
-        <div class="header-buttons">
-          <a href="#contact" class="btn btn-primary">联系我</a>
-        </div>
-        <div class="menu-toggle" :class="{ active: menuOpen }" @click="toggleMenu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-    </div>
-  </header>
-</template>
-
-<script>
-export default {
-  name: 'Header',
-  data() {
-    return {
-      isScrolled: false,
-      menuOpen: false
-    }
-  },
-  mounted() {
-    window.addEventListener('scroll', this.handleScroll)
-  },
-  beforeUnmount() {
-    window.removeEventListener('scroll', this.handleScroll)
-  },
-  methods: {
-    handleScroll() {
-      this.isScrolled = window.scrollY > 50
-    },
-    toggleMenu() {
-      this.menuOpen = !this.menuOpen
-    },
-    closeMenu() {
-      this.menuOpen = false
-    }
-  }
-}
-</script>
-
 <style scoped>
 .header {
   position: fixed;
@@ -89,6 +21,7 @@ export default {
   align-items: center;
   justify-content: space-between;
   gap: 40px;
+  width: 100%;
 }
 
 .logo {
@@ -112,12 +45,14 @@ export default {
 
 .nav-list {
   display: flex;
-  gap: 60px;
+  justify-content: space-around;
+  gap: 40px;
   list-style: none;
   margin: 0;
   padding: 0;
-  justify-content: center;
   align-items: center;
+  width: 100%;
+  max-width: 1000px;
 }
 
 .nav-item {
@@ -191,7 +126,7 @@ export default {
 
 @media (max-width: 1200px) {
   .nav-list {
-    gap: 40px;
+    gap: 30px;
   }
 }
 
