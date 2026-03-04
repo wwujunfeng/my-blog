@@ -88,6 +88,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 40px;
 }
 
 .logo {
@@ -96,18 +97,27 @@ export default {
   color: var(--text-primary);
   letter-spacing: -1px;
   text-decoration: none;
+  flex-shrink: 0;
 }
 
 .logo::first-letter {
   color: var(--accent-color);
 }
 
+.nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
 .nav-list {
   display: flex;
-  gap: 40px;
+  gap: 60px;
   list-style: none;
   margin: 0;
   padding: 0;
+  justify-content: center;
+  align-items: center;
 }
 
 .nav-item {
@@ -148,6 +158,7 @@ export default {
 .header-buttons {
   display: flex;
   gap: 15px;
+  flex-shrink: 0;
 }
 
 .menu-toggle {
@@ -176,6 +187,12 @@ export default {
 
 .menu-toggle.active span:nth-child(3) {
   transform: rotate(-45deg) translate(6px, -6px);
+}
+
+@media (max-width: 1200px) {
+  .nav-list {
+    gap: 40px;
+  }
 }
 
 @media (max-width: 768px) {
