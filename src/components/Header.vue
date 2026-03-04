@@ -120,7 +120,7 @@ export default {
   padding: 0;
   align-items: center;
   width: 100%;
-  max-width: 1000px;
+  max-width: 500px;
 }
 
 .nav-item {
