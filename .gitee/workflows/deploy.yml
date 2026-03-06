@@ -1,45 +1,58 @@
-name: Deploy to Tencent COS
+# name: Deploy to Tencent COS
+
+# on:
+#   push:
+#     branches:
+#       - master
+
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
+#     steps:
+#       # 1. 检出代码（Gitee Go 内置）
+#       - name: Checkout code
+#         uses: checkout
+
+#       # 2. 设置 Node.js（Gitee Go 内置）
+#       - name: Setup Node.js
+#         uses: node
+#         with:
+#           version: '20'
+
+#       # 3. 安装依赖并构建
+#       - name: Install and Build
+#         run: |
+#           npm install
+#           npm run build
+
+#       # 4. 安装 coscli（使用官方通用链接）
+#       - name: Install coscli
+#         run: |
+#           wget https://cosbrowser-1253960454.cos.ap-guangzhou.myqcloud.com/coscli/linux/coscli -O /tmp/coscli
+#           chmod +x /tmp/coscli
+
+#       # 5. 上传到 COS
+#       - name: Upload to COS
+#         run: |
+#           /tmp/coscli config set secret_id ${TENCENT_CLOUD_SECRET_ID}
+#           /tmp/coscli config set secret_key ${TENCENT_CLOUD_SECRET_KEY}
+#           /tmp/coscli config set region ap-shanghai
+
+#           /tmp/coscli object upload \
+#             --bucket blog-1408692413 \
+#             --local-path ./dist/ \
+#             --prefix "" \
+#             --delete-after-upload
+
+name: Test Pipeline
 
 on:
   push:
-    branches:
-      - master
+    branches: [ master ]
 
 jobs:
-  deploy:
+  test:
     runs-on: ubuntu-latest
     steps:
-      # 1. 检出代码（Gitee Go 内置）
-      - name: Checkout code
-        uses: checkout
-
-      # 2. 设置 Node.js（Gitee Go 内置）
-      - name: Setup Node.js
-        uses: node
-        with:
-          version: '20'
-
-      # 3. 安装依赖并构建
-      - name: Install and Build
-        run: |
-          npm install
-          npm run build
-
-      # 4. 安装 coscli（使用官方通用链接）
-      - name: Install coscli
-        run: |
-          wget https://cosbrowser-1253960454.cos.ap-guangzhou.myqcloud.com/coscli/linux/coscli -O /tmp/coscli
-          chmod +x /tmp/coscli
-
-      # 5. 上传到 COS
-      - name: Upload to COS
-        run: |
-          /tmp/coscli config set secret_id ${TENCENT_CLOUD_SECRET_ID}
-          /tmp/coscli config set secret_key ${TENCENT_CLOUD_SECRET_KEY}
-          /tmp/coscli config set region ap-shanghai
-
-          /tmp/coscli object upload \
-            --bucket blog-1408692413 \
-            --local-path ./dist/ \
-            --prefix "" \
-            --delete-after-upload
+      - name: Hello
+        run: echo "Gitee Go is working!"
