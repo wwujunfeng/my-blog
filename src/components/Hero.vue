@@ -4,7 +4,7 @@
       <div class="hero-content">
         <div class="hero-text">
           <h1 class="hero-title">
-            你好，我是 <span class="highlight">Arter</span>
+            你好，我是 <span class="highlight">白日梦想家</span>
           </h1>
           <p class="hero-description">
             一名专注于前端开发的自由职业者，热爱创造美观且功能强大的网站
