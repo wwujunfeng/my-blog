@@ -45,4 +45,4 @@ jobs:
                 endpoint: cos.ap-shanghai.myqcloud.com
                 alias: blog
           EOF
-          /tmp/coscli cp -r ./dist/ cos://blog-1408692413/
+          /tmp/coscli cp -r ./dist/ cos://blog-1408692413/ --retry-num 3 --thread-num 1
