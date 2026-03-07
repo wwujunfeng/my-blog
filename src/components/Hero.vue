@@ -4,10 +4,10 @@
       <div class="hero-content">
         <div class="hero-text">
           <h1 class="hero-title">
-            你好，我是 <span class="highlight">白日梦想家</span>
+            你好，我是 <span class="highlight">吴俊锋</span>
           </h1>
           <p class="hero-description">
-            一名专注于前端开发的自由职业者，热爱创造美观且功能强大的网站
+            一名热爱前端开发的工程师，专注于创造美观且功能强大的网站
           </p>
           <div class="hero-buttons">
             <a href="#portfolio" class="btn btn-primary">查看作品</a>
