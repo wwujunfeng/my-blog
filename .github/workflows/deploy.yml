@@ -33,5 +33,5 @@ jobs:
           TENCENT_CLOUD_SECRET_ID: ${{ secrets.TENCENT_CLOUD_SECRET_ID }}
           TENCENT_CLOUD_SECRET_KEY: ${{ secrets.TENCENT_CLOUD_SECRET_KEY }}
         run: |
-          /tmp/coscli config init -i "$TENCENT_CLOUD_SECRET_ID" -k "$TENCENT_CLOUD_SECRET_KEY" -e cos.ap-shanghai.myqcloud.com
-          /tmp/coscli cp -r ./dist/ cos://blog-1408692413/ --sync
+          /tmp/coscli config init -i "$TENCENT_CLOUD_SECRET_ID" -k "$TENCENT_CLOUD_SECRET_KEY" -e cos.ap-shanghai.myqcloud.com --init-skip
+          /tmp/coscli cp -r ./dist/ cos://blog-1408692413/
