@@ -36,3 +36,76 @@ jobs:
       - name: Upload to COS
         run: |
           coscmd upload -r ./dist/ /
+
+      - name: Refresh EDGEONE Cache
+        env:
+          TENCENT_CLOUD_SECRET_ID: ${{ secrets.TENCENT_CLOUD_SECRET_ID }}
+          TENCENT_CLOUD_SECRET_KEY: ${{ secrets.TENCENT_CLOUD_SECRET_KEY }}
+          ZONE_ID: zone-3ndslpvwl7d6
+        run: |
+          node -e "
+          const crypto = require('crypto');
+          const https = require('https');
+
+          const secretId = process.env.TENCENT_CLOUD_SECRET_ID;
+          const secretKey = process.env.TENCENT_CLOUD_SECRET_KEY;
+          const zoneId = process.env.ZONE_ID;
+
+          const host = 'teo.tencentcloudapi.com';
+          const service = 'teo';
+          const action = 'CreatePurgeTask';
+          const version = '2022-09-01';
+          const region = '';
+          const timestamp = Math.floor(Date.now() / 1000);
+          const date = new Date(timestamp * 1000).toISOString().split('T')[0];
+
+          const payload = JSON.stringify({
+            ZoneId: zoneId,
+            Type: 'purge_host',
+            Method: 'delete',
+            Targets: ['pepani.cn']
+          });
+
+          const hashedPayload = crypto.createHash('sha256').update(payload).digest('hex');
+
+          const canonicalHeaders = 'content-type:application/json\nhost:' + host + '\n';
+          const signedHeaders = 'content-type;host';
+
+          const canonicalRequest = 'POST\n/\n\n' + canonicalHeaders + '\n' + signedHeaders + '\n' + hashedPayload;
+
+          const credentialScope = date + '/' + service + '/tc3_request';
+          const hashedCanonicalRequest = crypto.createHash('sha256').update(canonicalRequest).digest('hex');
+          const stringToSign = 'TC3-HMAC-SHA256\n' + timestamp + '\n' + credentialScope + '\n' + hashedCanonicalRequest;
+
+          const secretDate = crypto.createHmac('sha256', 'TC3' + secretKey).update(date).digest();
+          const secretService = crypto.createHmac('sha256', secretDate).update(service).digest();
+          const secretSigning = crypto.createHmac('sha256', secretService).update('tc3_request').digest();
+          const signature = crypto.createHmac('sha256', secretSigning).update(stringToSign).digest('hex');
+
+          const authorization = 'TC3-HMAC-SHA256 Credential=' + secretId + '/' + credentialScope + ', SignedHeaders=' + signedHeaders + ', Signature=' + signature;
+
+          const options = {
+            hostname: host,
+            port: 443,
+            path: '/',
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Host': host,
+              'X-TC-Action': action,
+              'X-TC-Version': version,
+              'X-TC-Timestamp': timestamp.toString(),
+              'Authorization': authorization
+            }
+          };
+
+          const req = https.request(options, (res) => {
+            let data = '';
+            res.on('data', (chunk) => { data += chunk; });
+            res.on('end', () => { console.log(data); });
+          });
+
+          req.on('error', (e) => { console.error(e); });
+          req.write(payload);
+          req.end();
+          "
