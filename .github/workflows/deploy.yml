@@ -10,12 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: gitee/checkout@v1
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: gitee/node@v1
+        uses: actions/setup-node@v4
         with:
-          version: '22'
+          node-version: '22'
+          cache: 'npm'
 
       - name: Install and Build
         run: |
