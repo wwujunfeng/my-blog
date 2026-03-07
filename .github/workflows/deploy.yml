@@ -33,16 +33,11 @@ jobs:
           TENCENT_CLOUD_SECRET_ID: ${{ secrets.TENCENT_CLOUD_SECRET_ID }}
           TENCENT_CLOUD_SECRET_KEY: ${{ secrets.TENCENT_CLOUD_SECRET_KEY }}
         run: |
-          mkdir -p ~/.cos
-          cat > ~/.cos.yaml << EOF
-          cos:
-            base:
-              secret_id: $TENCENT_CLOUD_SECRET_ID
-              secret_key: $TENCENT_CLOUD_SECRET_KEY
-              session_token: ""
-            buckets:
-              - name: blog-1408692413
-                endpoint: cos.ap-shanghai.myqcloud.com
-                alias: blog
-          EOF
+          echo "cos:" > ~/.cos.yaml
+          echo "  base:" >> ~/.cos.yaml
+          echo "    secret_id: $TENCENT_CLOUD_SECRET_ID" >> ~/.cos.yaml
+          echo "    secret_key: $TENCENT_CLOUD_SECRET_KEY" >> ~/.cos.yaml
+          echo "  buckets:" >> ~/.cos.yaml
+          echo "    - name: blog-1408692413" >> ~/.cos.yaml
+          echo "      endpoint: cos.ap-shanghai.myqcloud.com" >> ~/.cos.yaml
           /tmp/coscli cp -r ./dist/ cos://blog-1408692413/ --retry-num 3 --thread-num 1
