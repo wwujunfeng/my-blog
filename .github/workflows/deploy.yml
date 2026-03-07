@@ -23,21 +23,16 @@ jobs:
           npm install
           npm run build
 
-      - name: Install coscli
-        run: |
-          wget https://cosbrowser.cloud.tencent.com/software/coscli/coscli-linux -O /tmp/coscli
-          chmod +x /tmp/coscli
+      - name: Install coscmd
+        run: pip install coscmd
 
-      - name: Upload to COS
+      - name: Configure coscmd
         env:
           TENCENT_CLOUD_SECRET_ID: ${{ secrets.TENCENT_CLOUD_SECRET_ID }}
           TENCENT_CLOUD_SECRET_KEY: ${{ secrets.TENCENT_CLOUD_SECRET_KEY }}
         run: |
-          echo "cos:" > ~/.cos.yaml
-          echo "  base:" >> ~/.cos.yaml
-          echo "    secret_id: $TENCENT_CLOUD_SECRET_ID" >> ~/.cos.yaml
-          echo "    secret_key: $TENCENT_CLOUD_SECRET_KEY" >> ~/.cos.yaml
-          echo "  buckets:" >> ~/.cos.yaml
-          echo "    - name: blog-1408692413" >> ~/.cos.yaml
-          echo "      endpoint: cos.ap-shanghai.myqcloud.com" >> ~/.cos.yaml
-          /tmp/coscli cp -r ./dist/ cos://blog-1408692413/ --retry-num 3 --thread-num 1
+          coscmd config -a $TENCENT_CLOUD_SECRET_ID -s $TENCENT_CLOUD_SECRET_KEY -b blog-1408692413 -r ap-shanghai
+
+      - name: Upload to COS
+        run: |
+          coscmd upload -r ./dist/ /
