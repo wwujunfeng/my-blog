@@ -9,34 +9,34 @@
         <div class="about-image animate-on-scroll">
           <img src="../assets/profile/about.jpg" alt="About Me">
           <div class="experience-badge">
-            <span class="number">5+</span>
+            <span class="number">6+</span>
             <span class="text">年经验</span>
           </div>
         </div>
         <div class="about-text animate-on-scroll">
-          <h3>我是一名前端开发者</h3>
+          <h3>我是一名设计师</h3>
           <p>
-            我专注于创建美观、响应式的网站和应用程序。拥有5年以上的前端开发经验，熟悉现代前端技术栈，包括HTML5、CSS3、JavaScript、Vue.js等。
+            我专注于创建引人入胜的视觉设计和3D作品。拥有5年以上的设计经验，擅长3D渲染、角色设计、环境设计和动画制作，熟悉现代设计工具和工作流程。
           </p>
           <p>
-            我热爱解决问题，不断学习新技术，并且注重代码质量和用户体验。我相信好的设计应该既美观又实用。
+            我热爱将创意转化为视觉作品，不断探索新的设计风格和技术，并且注重细节和用户体验。我相信好的设计应该既美观又能传达有效的信息。
           </p>
           <div class="about-info">
             <div class="info-item">
               <span class="label">姓名：</span>
-              <span class="value">Arter</span>
+              <span class="value">TJX</span>
             </div>
             <div class="info-item">
               <span class="label">邮箱：</span>
-              <span class="value">contact@arter.com</span>
+              <span class="value">1023808661@qq.com</span>
             </div>
             <div class="info-item">
               <span class="label">电话：</span>
-              <span class="value">+123 456 7890</span>
+              <span class="value">151 9597 0318</span>
             </div>
             <div class="info-item">
               <span class="label">地址：</span>
-              <span class="value">北京市朝阳区</span>
+              <span class="value">江苏省苏州市</span>
             </div>
           </div>
           <a href="#contact" class="btn btn-primary">联系我</a>

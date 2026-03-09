@@ -18,7 +18,7 @@
               </div>
               <div class="contact-text">
                 <h4>地址</h4>
-                <p>北京市朝阳区</p>
+                <p>江苏省苏州市</p>
               </div>
             </div>
             <div class="contact-item">
@@ -27,7 +27,7 @@
               </div>
               <div class="contact-text">
                 <h4>邮箱</h4>
-                <p>contact@arter.com</p>
+                <p>1023808661@qq.com</p>
               </div>
             </div>
             <div class="contact-item">
@@ -36,7 +36,7 @@
               </div>
               <div class="contact-text">
                 <h4>电话</h4>
-                <p>+123 456 7890</p>
+                <p>151 9597 0318</p>
               </div>
             </div>
           </div>
