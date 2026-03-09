@@ -3,7 +3,7 @@
     <div class="container">
       <div class="header-content">
         <a href="#home" class="logo">
-          Arter
+          Jennie
         </a>
         <nav class="nav">
           <ul class="nav-list" :class="{ active: menuOpen }">

@@ -4,10 +4,10 @@
       <div class="hero-content">
         <div class="hero-text">
           <h1 class="hero-title">
-            你好，我是 <span class="highlight">白日梦想家</span>
+            你好，我是 <span class="highlight">TJX</span>
           </h1>
           <p class="hero-description">
-            一名充满创意的3D设计师，专注于创造震撼的视觉效果和沉浸式体验
+            一名充满创意的3D设计师，专注于沉浸式的视觉效果和体验
           </p>
           <div class="hero-buttons">
             <a href="#portfolio" class="btn btn-primary">查看设计</a>
