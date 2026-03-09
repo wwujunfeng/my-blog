@@ -14,42 +14,42 @@
         <button class="filter-btn" data-filter="vfx">VFX</button>
       </div>
       <div class="portfolio-grid">
-        <div class="portfolio-item animate-on-scroll" data-category="3d" @click="openPreview('project1', '产品渲染', '3D渲染')">
+        <div class="portfolio-item animate-on-scroll" data-category="3d" @click="openPreview('project1', '产品渲染', '3D渲染', 'video')">
           <img src="../assets/portfolio/project1.jpg" alt="产品渲染">
           <div class="portfolio-overlay">
             <h4>产品渲染</h4>
             <span>3D渲染</span>
           </div>
         </div>
-        <div class="portfolio-item animate-on-scroll" data-category="character" @click="openPreview('project2', '角色建模', '角色设计')">
+        <div class="portfolio-item animate-on-scroll" data-category="character" @click="openPreview('project2', '角色建模', '角色设计', 'video')">
           <img src="../assets/portfolio/project2.jpg" alt="角色建模">
           <div class="portfolio-overlay">
             <h4>角色建模</h4>
             <span>角色设计</span>
           </div>
         </div>
-        <div class="portfolio-item animate-on-scroll" data-category="environment" @click="openPreview('project3', '场景设计', '环境设计')">
+        <div class="portfolio-item animate-on-scroll" data-category="environment" @click="openPreview('project3', '场景设计', '环境设计', 'video')">
           <img src="../assets/portfolio/project3.jpg" alt="场景设计">
           <div class="portfolio-overlay">
             <h4>场景设计</h4>
             <span>环境设计</span>
           </div>
         </div>
-        <div class="portfolio-item animate-on-scroll" data-category="animation" @click="openPreview('project4', '动画短片', '动画制作')">
+        <div class="portfolio-item animate-on-scroll" data-category="animation" @click="openPreview('project4', '动画短片', '动画制作', 'video')">
           <img src="../assets/portfolio/project4.jpg" alt="动画短片">
           <div class="portfolio-overlay">
             <h4>动画短片</h4>
             <span>动画制作</span>
           </div>
         </div>
-        <div class="portfolio-item animate-on-scroll" data-category="vfx" @click="openPreview('project5', '视觉特效', 'VFX')">
+        <div class="portfolio-item animate-on-scroll" data-category="vfx" @click="openPreview('project5', '视觉特效', 'VFX', 'video')">
           <img src="../assets/portfolio/project5.jpg" alt="视觉特效">
           <div class="portfolio-overlay">
             <h4>视觉特效</h4>
             <span>VFX</span>
           </div>
         </div>
-        <div class="portfolio-item animate-on-scroll" data-category="3d" @click="openPreview('project6', '产品展示', '3D渲染')">
+        <div class="portfolio-item animate-on-scroll" data-category="3d" @click="openPreview('project6', '产品展示', '3D渲染', 'video')">
           <img src="../assets/portfolio/project6.jpg" alt="产品展示">
           <div class="portfolio-overlay">
             <h4>产品展示</h4>
@@ -62,7 +62,10 @@
     <div v-if="showPreview" class="preview-modal" @click="closePreview">
       <div class="preview-content" @click.stop>
         <button class="preview-close" @click="closePreview">&times;</button>
-        <img :src="previewImage" :alt="previewTitle">
+        <video v-if="previewType === 'video'" :src="previewVideo" controls autoplay muted loop>
+          您的浏览器不支持视频播放。
+        </video>
+        <img v-else :src="previewImage" :alt="previewTitle">
         <h3>{{ previewTitle }}</h3>
         <p>{{ previewCategory }}</p>
       </div>
@@ -77,8 +80,10 @@ export default {
     return {
       showPreview: false,
       previewImage: '',
+      previewVideo: '',
       previewTitle: '',
-      previewCategory: ''
+      previewCategory: '',
+      previewType: 'image'
     }
   },
   mounted() {
@@ -106,17 +111,27 @@ export default {
         })
       })
     },
-    openPreview(imageName, title, category) {
-      this.previewImage = new URL(`../assets/portfolio/${imageName}.jpg`, import.meta.url).href
+    openPreview(itemName, title, category, type = 'image') {
       this.previewTitle = title
       this.previewCategory = category
+      this.previewType = type
+      
+      if (type === 'video') {
+        // 使用测试视频URL
+        this.previewVideo = 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4'
+      } else {
+        this.previewImage = new URL(`../assets/portfolio/${itemName}.jpg`, import.meta.url).href
+      }
+      
       this.showPreview = true
     },
     closePreview() {
       this.showPreview = false
       this.previewImage = ''
+      this.previewVideo = ''
       this.previewTitle = ''
       this.previewCategory = ''
+      this.previewType = 'image'
     }
   }
 }
@@ -142,8 +157,8 @@ export default {
   background: var(--bg-secondary);
   padding: 20px;
   border-radius: 10px;
-  max-width: 90vw;
-  max-height: 90vh;
+  max-width: 95vw;
+  max-height: 95vh;
   overflow: hidden;
   position: relative;
   border: 1px solid var(--border-color);
@@ -156,7 +171,15 @@ export default {
 .preview-content img {
   width: 100%;
   max-width: 100%;
-  max-height: 75vh;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 5px;
+}
+
+.preview-content video {
+  width: 100%;
+  max-width: 100%;
+  max-height: 85vh;
   object-fit: contain;
   border-radius: 5px;
 }
@@ -208,7 +231,11 @@ export default {
   }
 
   .preview-content img {
-    max-height: 85vh;
+    max-height: 90vh;
+  }
+
+  .preview-content video {
+    max-height: 90vh;
   }
 
   .preview-content h3 {
