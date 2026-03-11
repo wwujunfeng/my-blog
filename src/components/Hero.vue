@@ -14,10 +14,9 @@
             <a href="#contact" class="btn btn-secondary">联系我</a>
           </div>
           <div class="hero-social">
-            <a href="#" class="social-link"><i class="fa fa-github"></i></a>
-            <a href="#" class="social-link"><i class="fa fa-artstation"></i></a>
-            <a href="#" class="social-link"><i class="fa fa-behance"></i></a>
-            <a href="#" class="social-link"><i class="fa fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="iconfont icon-blog-sign_wechat"></i></a>
+            <a href="#" class="social-link"><i class="iconfont icon-blog-dianhua"></i></a>
+            <a href="#" class="social-link"><i class="iconfont icon-blog-youxiang1"></i></a>
           </div>
         </div>
         <div class="hero-image">

@@ -3,7 +3,7 @@
     <div class="container">
       <div class="header-content">
         <a href="#home" class="logo">
-          Jennie
+          Jx
         </a>
         <nav class="nav">
           <ul class="nav-list" :class="{ active: menuOpen }">
@@ -16,9 +16,9 @@
             <li class="nav-item">
               <a href="#portfolio" class="nav-link" @click="closeMenu">作品集</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a href="#blog" class="nav-link" @click="closeMenu">博客</a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a href="#contact" class="nav-link" @click="closeMenu">联系</a>
             </li>

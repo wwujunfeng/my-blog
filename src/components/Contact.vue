@@ -41,10 +41,9 @@
             </div>
           </div>
           <div class="contact-social">
-            <a href="#" class="social-link"><i class="fa fa-github"></i></a>
-            <a href="#" class="social-link"><i class="fa fa-linkedin"></i></a>
-            <a href="#" class="social-link"><i class="fa fa-twitter"></i></a>
-            <a href="#" class="social-link"><i class="fa fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="iconfont icon-blog-sign_wechat"></i></a>
+            <a href="#" class="social-link"><i class="iconfont icon-blog-dianhua"></i></a>
+            <a href="#" class="social-link"><i class="iconfont icon-blog-youxiang1"></i></a>
           </div>
         </div>
         <div class="contact-form animate-on-scroll">

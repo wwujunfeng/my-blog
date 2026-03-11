@@ -4,7 +4,8 @@
     <Hero />
     <About />
     <Portfolio />
-    <Blog />
+    <Skills />
+    <!-- <Blog /> -->
     <Contact />
     <Footer />
   </div>
@@ -15,7 +16,8 @@ import Header from './components/Header.vue'
 import Hero from './components/Hero.vue'
 import About from './components/About.vue'
 import Portfolio from './components/Portfolio.vue'
-import Blog from './components/Blog.vue'
+import Skills from './components/Skills.vue'
+// import Blog from './components/Blog.vue'
 import Contact from './components/Contact.vue'
 import Footer from './components/Footer.vue'
 
@@ -26,7 +28,8 @@ export default {
     Hero,
     About,
     Portfolio,
-    Blog,
+    Skills,
+    // Blog,
     Contact,
     Footer
   },

@@ -1,5 +1,5 @@
 /* ========================================
-   Arter - Personal Blog Template
+   Tjx - Personal Blog Template
    Dark Theme Style
    ======================================== */
 
@@ -514,17 +514,20 @@ img {
 }
 
 .skill-icon {
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
     background: var(--bg-tertiary);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 20px;
-    font-size: 30px;
     color: var(--accent-color);
     transition: var(--transition-normal);
+}
+
+.skill-icon i {
+    font-size: 40px;
 }
 
 .skill-item:hover .skill-icon {
@@ -819,10 +822,15 @@ img {
 }
 
 .footer-content {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 40px;
     margin-bottom: 30px;
+}
+
+.footer-info {
+    text-align: center;
 }
 
 .footer-info h3 {
