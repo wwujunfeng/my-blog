@@ -7,7 +7,7 @@
       </div>
       <div class="about-content">
         <div class="about-image animate-on-scroll">
-          <img src="../assets/profile/about.jpg" alt="About Me">
+          <img src="https://blog-1408692413.cos.ap-shanghai.myqcloud.com/images/about.jpg" alt="About Me">
           <div class="experience-badge">
             <span class="number">6+</span>
             <span class="text">年经验</span>

@@ -20,7 +20,7 @@
           </div>
         </div>
         <div class="hero-image">
-          <img src="../assets/profile/profile.jpg" alt="Profile">
+          <img src="https://blog-1408692413.cos.ap-shanghai.myqcloud.com/images/profile.jpg" alt="Profile">
         </div>
       </div>
     </div>
