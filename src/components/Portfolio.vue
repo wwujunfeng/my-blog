@@ -129,9 +129,12 @@ export default {
       this.previewCategory = category
       this.previewType = type
       
+      // 腾讯云 COS 视频基础 URL
+      const cosBaseUrl = 'https://blog-1408692413.cos.ap-shanghai.myqcloud.com/videos'
+      
       if (type === 'video') {
-        // 使用本地视频文件
-        this.previewVideo = new URL(`../assets/portfolio/${itemName}.mp4`, import.meta.url).href
+        // 使用腾讯云 COS 视频链接
+        this.previewVideo = `${cosBaseUrl}/${itemName}.mp4`
       } else {
         this.previewImage = new URL(`../assets/portfolio/${itemName}.jpg`, import.meta.url).href
       }

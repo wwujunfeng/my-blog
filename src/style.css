@@ -453,6 +453,24 @@ img {
     letter-spacing: 1px;
 }
 
+@media (max-width: 768px) {
+    .about-image .experience-badge {
+        bottom: auto;
+        right: auto;
+        left: -20px;
+        bottom: -50px;
+        padding: 15px 20px;
+    }
+    
+    .experience-badge .number {
+        font-size: 32px;
+    }
+    
+    .experience-badge .text {
+        font-size: 12px;
+    }
+}
+
 .about-text h3 {
     font-size: 32px;
     margin-bottom: 20px;
