@@ -36,7 +36,6 @@ export default {
   mounted() {
     this.initScrollAnimation()
     this.initPortfolioFilter()
-    this.initContactForm()
   },
   methods: {
     initScrollAnimation() {
@@ -78,17 +77,6 @@ export default {
           })
         })
       })
-    },
-
-    initContactForm() {
-      const form = document.getElementById('contact-form')
-      if (form) {
-        form.addEventListener('submit', (e) => {
-          e.preventDefault()
-          alert('消息已发送！')
-          form.reset()
-        })
-      }
     }
   }
 }

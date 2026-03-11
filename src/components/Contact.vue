@@ -9,7 +9,7 @@
         <div class="contact-info animate-on-scroll">
           <h3>联系方式</h3>
           <p>
-            如果你有任何问题或合作意向，请随时联系我。我会尽快回复你。
+            如果你有任何问题或合作意向，请随时联系我。
           </p>
           <div class="contact-details">
             <div class="contact-item">
@@ -48,20 +48,62 @@
         </div>
         <div class="contact-form animate-on-scroll">
           <h3>发送消息</h3>
-          <form id="contact-form">
+          <div v-if="formStatus" :class="['form-message', formStatus.type]">
+            {{ formStatus.message }}
+          </div>
+          <form 
+            id="contact-form" 
+            action="https://formspree.io/f/xgonkkwd" 
+            method="POST"
+            @submit="handleSubmit"
+          >
             <div class="form-group">
-              <input type="text" id="name" name="name" placeholder="你的姓名" required>
+              <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                placeholder="你的姓名" 
+                required
+                v-model="formData.name"
+              >
             </div>
             <div class="form-group">
-              <input type="email" id="email" name="email" placeholder="你的邮箱" required>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                placeholder="你的邮箱" 
+                required
+                v-model="formData.email"
+              >
             </div>
             <div class="form-group">
-              <input type="text" id="subject" name="subject" placeholder="主题" required>
+              <input 
+                type="text" 
+                id="subject" 
+                name="subject" 
+                placeholder="主题" 
+                required
+                v-model="formData.subject"
+              >
             </div>
             <div class="form-group">
-              <textarea id="message" name="message" placeholder="你的消息" rows="5" required></textarea>
+              <textarea 
+                id="message" 
+                name="message" 
+                placeholder="你的消息" 
+                rows="5" 
+                required
+                v-model="formData.message"
+              ></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">发送消息</button>
+            <button 
+              type="submit" 
+              class="btn btn-primary"
+              :disabled="isSubmitting"
+            >
+              {{ isSubmitting ? '发送中...' : '发送消息' }}
+            </button>
           </form>
         </div>
       </div>
@@ -71,7 +113,64 @@
 
 <script>
 export default {
-  name: 'Contact'
+  name: 'Contact',
+  data() {
+    return {
+      formData: {
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      },
+      isSubmitting: false,
+      formStatus: null
+    }
+  },
+  methods: {
+    async handleSubmit(event) {
+      event.preventDefault()
+      
+      this.isSubmitting = true
+      this.formStatus = null
+      
+      const form = event.target
+      const formData = new FormData(form)
+      
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        })
+        
+        if (response.ok) {
+          this.formStatus = {
+            type: 'success',
+            message: '消息已发送成功！我会尽快回复您。'
+          }
+          this.formData = {
+            name: '',
+            email: '',
+            subject: '',
+            message: ''
+          }
+          form.reset()
+        } else {
+          const data = await response.json()
+          throw new Error(data.error || '发送失败')
+        }
+      } catch (error) {
+        this.formStatus = {
+          type: 'error',
+          message: '发送失败，请稍后重试或直接发送邮件到 1023808661@qq.com'
+        }
+      } finally {
+        this.isSubmitting = false
+      }
+    }
+  }
 }
 </script>
 
@@ -145,6 +244,25 @@ export default {
   margin-bottom: 30px;
 }
 
+.form-message {
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.form-message.success {
+  background: rgba(76, 175, 80, 0.1);
+  color: #4caf50;
+  border: 1px solid #4caf50;
+}
+
+.form-message.error {
+  background: rgba(244, 67, 54, 0.1);
+  color: #f44336;
+  border: 1px solid #f44336;
+}
+
 .form-group {
   margin-bottom: 25px;
 }
@@ -176,6 +294,11 @@ export default {
 .form-group textarea {
   min-height: 150px;
   resize: vertical;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 @media (max-width: 768px) {

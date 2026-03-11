@@ -412,11 +412,16 @@ img {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .about-image {
     position: relative;
+    margin-top: 0px;
+}
+
+.about-text {
+    margin-top: 60px;
 }
 
 .about-image img {
@@ -484,6 +489,10 @@ img {
    ======================================== */
 .skills {
     margin-top: 100px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
 }
 
 .skills-title {
