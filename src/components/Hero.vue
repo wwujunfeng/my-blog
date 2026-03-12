@@ -20,7 +20,7 @@
           </div>
         </div>
         <div class="hero-image">
-          <img src="https://blog-1408692413.cos.ap-shanghai.myqcloud.com/images/profile.jpg?x-cos-process=image/format,webp,q_80" alt="Profile">
+          <img src="https://blog-1408692413.cos.ap-shanghai.myqcloud.com/images/profile.jpg?imageMogr2/format/webp/interlace/0/quality/80" alt="Profile">
         </div>
       </div>
     </div>
