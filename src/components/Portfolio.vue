@@ -8,10 +8,9 @@
       <div class="portfolio-filter">
         <button class="filter-btn active" data-filter="all">全部</button>
         <button class="filter-btn" data-filter="3d">3D渲染</button>
-        <button class="filter-btn" data-filter="character">角色设计</button>
-        <button class="filter-btn" data-filter="environment">环境设计</button>
+        <button class="filter-btn" data-filter="product">产品设计</button>
         <button class="filter-btn" data-filter="animation">动画制作</button>
-        <button class="filter-btn" data-filter="vfx">VFX</button>
+        <button class="filter-btn" data-filter="graphic">平面设计</button>
       </div>
       <div class="portfolio-grid">
         <div class="portfolio-item animate-on-scroll" data-category="3d" @click="openPreview('project1', '产品渲染', '3D渲染', 'video')">
@@ -21,39 +20,53 @@
             <span>3D渲染</span>
           </div>
         </div>
-        <div class="portfolio-item animate-on-scroll" data-category="character" @click="openPreview('project2', '角色建模', '角色设计', 'video')">
+        <div class="portfolio-item animate-on-scroll" data-category="3d" @click="openPreview('project2', '角色建模', '3D渲染', 'video')">
           <img src="../assets/portfolio/project2.jpg" alt="角色建模">
           <div class="portfolio-overlay">
             <h4>角色建模</h4>
-            <span>角色设计</span>
+            <span>3D渲染</span>
           </div>
         </div>
-        <div class="portfolio-item animate-on-scroll" data-category="environment" @click="openPreview('project3', '场景设计', '环境设计', 'video')">
-          <img src="../assets/portfolio/project3.jpg" alt="场景设计">
+        <div class="portfolio-item animate-on-scroll" data-category="product" @click="openPreview('project3', '产品设计', '产品设计', 'video')">
+          <img src="../assets/portfolio/project3.jpg" alt="产品设计">
           <div class="portfolio-overlay">
-            <h4>场景设计</h4>
-            <span>环境设计</span>
+            <h4>产品设计</h4>
+            <span>产品设计</span>
           </div>
         </div>
-        <div class="portfolio-item animate-on-scroll" data-category="animation" @click="openPreview('project4', '动画短片', '动画制作', 'video')">
+        <div class="portfolio-item animate-on-scroll" data-category="animation" @click="openPreview('cfj', '动画短片', '动画制作', 'video')">
           <img src="../assets/portfolio/project4.jpg" alt="动画短片">
           <div class="portfolio-overlay">
             <h4>动画短片</h4>
             <span>动画制作</span>
           </div>
         </div>
-        <div class="portfolio-item animate-on-scroll" data-category="vfx" @click="openPreview('project5', '视觉特效', 'VFX', 'video')">
-          <img src="../assets/portfolio/project5.jpg" alt="视觉特效">
+        <div class="portfolio-item animate-on-scroll" data-category="animation" @click="openPreview('qp', '动画短片', '动画制作', 'video')">
+          <img src="../assets/portfolio/project4.jpg" alt="动画短片">
           <div class="portfolio-overlay">
-            <h4>视觉特效</h4>
-            <span>VFX</span>
+            <h4>动画短片</h4>
+            <span>动画制作</span>
           </div>
         </div>
-        <div class="portfolio-item animate-on-scroll" data-category="3d" @click="openPreview('project6', '产品展示', '3D渲染', 'video')">
+        <div class="portfolio-item animate-on-scroll" data-category="animation" @click="openPreview('kqzg', '动画短片', '动画制作', 'video')">
+          <img src="../assets/portfolio/project4.jpg" alt="动画短片">
+          <div class="portfolio-overlay">
+            <h4>动画短片</h4>
+            <span>动画制作</span>
+          </div>
+        </div>
+        <div class="portfolio-item animate-on-scroll" data-category="graphic" @click="openPreview('project5', '平面设计', '平面设计', 'video')">
+          <img src="../assets/portfolio/project5.jpg" alt="平面设计">
+          <div class="portfolio-overlay">
+            <h4>平面设计</h4>
+            <span>平面设计</span>
+          </div>
+        </div>
+        <div class="portfolio-item animate-on-scroll" data-category="product" @click="openPreview('project6', '产品展示', '产品设计', 'video')">
           <img src="../assets/portfolio/project6.jpg" alt="产品展示">
           <div class="portfolio-overlay">
             <h4>产品展示</h4>
-            <span>3D渲染</span>
+            <span>产品设计</span>
           </div>
         </div>
       </div>
@@ -116,9 +129,12 @@ export default {
       this.previewCategory = category
       this.previewType = type
       
+      // 腾讯云 COS 视频基础 URL
+      const cosBaseUrl = 'https://blog-1408692413.cos.ap-shanghai.myqcloud.com/videos'
+      
       if (type === 'video') {
-        // 使用测试视频URL
-        this.previewVideo = 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4'
+        // 使用腾讯云 COS 视频链接
+        this.previewVideo = `${cosBaseUrl}/${itemName}.mp4`
       } else {
         this.previewImage = new URL(`../assets/portfolio/${itemName}.jpg`, import.meta.url).href
       }
@@ -142,8 +158,8 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background: rgba(0, 0, 0, 0.95);
   display: flex;
   justify-content: center;
@@ -151,6 +167,7 @@ export default {
   z-index: 10000;
   padding: 0;
   margin: 0;
+  overflow: hidden;
 }
 
 .preview-content {

@@ -14,14 +14,13 @@
             <a href="#contact" class="btn btn-secondary">联系我</a>
           </div>
           <div class="hero-social">
-            <a href="#" class="social-link"><i class="fa fa-github"></i></a>
-            <a href="#" class="social-link"><i class="fa fa-artstation"></i></a>
-            <a href="#" class="social-link"><i class="fa fa-behance"></i></a>
-            <a href="#" class="social-link"><i class="fa fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="iconfont icon-blog-sign_wechat"></i></a>
+            <a href="#" class="social-link"><i class="iconfont icon-blog-dianhua"></i></a>
+            <a href="#" class="social-link"><i class="iconfont icon-blog-youxiang1"></i></a>
           </div>
         </div>
         <div class="hero-image">
-          <img src="../assets/profile/profile.jpg" alt="Profile">
+          <img src="https://blog-1408692413.cos.ap-shanghai.myqcloud.com/images/profile.jpg" alt="Profile">
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 /* ========================================
-   Arter - Personal Blog Template
+   Tjx - Personal Blog Template
    Dark Theme Style
    ======================================== */
 
@@ -412,11 +412,16 @@ img {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .about-image {
     position: relative;
+    margin-top: 0px;
+}
+
+.about-text {
+    margin-top: 60px;
 }
 
 .about-image img {
@@ -446,6 +451,24 @@ img {
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+    .about-image .experience-badge {
+        bottom: auto;
+        right: auto;
+        left: -20px;
+        bottom: -50px;
+        padding: 15px 20px;
+    }
+    
+    .experience-badge .number {
+        font-size: 32px;
+    }
+    
+    .experience-badge .text {
+        font-size: 12px;
+    }
 }
 
 .about-text h3 {
@@ -484,6 +507,12 @@ img {
    ======================================== */
 .skills {
     margin-top: 100px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .skills-title {
@@ -514,17 +543,20 @@ img {
 }
 
 .skill-icon {
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
     background: var(--bg-tertiary);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 20px;
-    font-size: 30px;
     color: var(--accent-color);
     transition: var(--transition-normal);
+}
+
+.skill-icon i {
+    font-size: 40px;
 }
 
 .skill-item:hover .skill-icon {
@@ -819,10 +851,15 @@ img {
 }
 
 .footer-content {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 40px;
     margin-bottom: 30px;
+}
+
+.footer-info {
+    text-align: center;
 }
 
 .footer-info h3 {
