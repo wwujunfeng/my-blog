@@ -13,72 +13,106 @@
         <button class="filter-btn" data-filter="graphic">平面设计</button>
       </div>
       <div class="portfolio-grid">
-        <div class="portfolio-item animate-on-scroll" data-category="3d" @click="openPreview('project1', '产品渲染', '3D渲染', 'video')">
-          <img src="../assets/portfolio/project1.jpg" alt="产品渲染">
+        <div class="portfolio-item animate-on-scroll" data-category="3d"
+          @click="openPreview('zdcfj', '吹风机', '3D渲染', 'img')">
+          <img src="../assets/portfolio/zdcfj/zdcfj_1.png" alt="吹风机">
           <div class="portfolio-overlay">
-            <h4>产品渲染</h4>
+            <h4>吹风机</h4>
             <span>3D渲染</span>
           </div>
         </div>
-        <div class="portfolio-item animate-on-scroll" data-category="3d" @click="openPreview('project2', '角色建模', '3D渲染', 'video')">
-          <img src="../assets/portfolio/project2.jpg" alt="角色建模">
+        <div class="portfolio-item animate-on-scroll" data-category="3d"
+          @click="openPreview('jsqc', '健身用品', '3D渲染', 'img')">
+          <img src="../assets/portfolio/jsqc/jsqc_1.jpg" alt="健身用品">
           <div class="portfolio-overlay">
-            <h4>角色建模</h4>
+            <h4>健身用品</h4>
             <span>3D渲染</span>
           </div>
         </div>
-        <div class="portfolio-item animate-on-scroll" data-category="product" @click="openPreview('project3', '产品设计', '产品设计', 'video')">
-          <img src="../assets/portfolio/project3.jpg" alt="产品设计">
+        <div class="portfolio-item animate-on-scroll" data-category="3d"
+          @click="openPreview('hbc', '滑板车', '3D渲染', 'img')">
+          <img src="../assets/portfolio/hbc/hbc_1.jpg" alt="滑板车">
+          <div class="portfolio-overlay">
+            <h4>滑板车</h4>
+            <span>3D渲染</span>
+          </div>
+        </div>
+        <div class="portfolio-item animate-on-scroll" data-category="animation"
+          @click="openPreview('cfj', '动画短片', '动画制作', 'video')">
+          <img src="../assets/portfolio/cfj.jpg" alt="动画短片">
+          <div class="portfolio-overlay">
+            <h4>动画短片</h4>
+            <span>动画制作</span>
+          </div>
+        </div>
+        <div class="portfolio-item animate-on-scroll" data-category="animation"
+          @click="openPreview('qp', '动画短片', '动画制作', 'video')">
+          <img src="../assets/portfolio/qp.jpg" alt="动画短片">
+          <div class="portfolio-overlay">
+            <h4>动画短片</h4>
+            <span>动画制作</span>
+          </div>
+        </div>
+        <div class="portfolio-item animate-on-scroll" data-category="animation"
+          @click="openPreview('kqzg', '动画短片', '动画制作', 'video')">
+          <img src="../assets/portfolio/kqzg.jpg" alt="动画短片">
+          <div class="portfolio-overlay">
+            <h4>动画短片</h4>
+            <span>动画制作</span>
+          </div>
+        </div>
+                <div class="portfolio-item animate-on-scroll" data-category="product"
+          @click="openPreview('prodectDesign_1', '产品设计', '产品设计', 'img')">
+          <img src="../assets/portfolio/prodectDesign_1.jpg" alt="产品设计">
           <div class="portfolio-overlay">
             <h4>产品设计</h4>
             <span>产品设计</span>
           </div>
         </div>
-        <div class="portfolio-item animate-on-scroll" data-category="animation" @click="openPreview('cfj', '动画短片', '动画制作', 'video')">
-          <img src="../assets/portfolio/project4.jpg" alt="动画短片">
+        <div class="portfolio-item animate-on-scroll" data-category="product"
+          @click="openPreview('prodectDesign_3', '产品设计', '产品设计', 'img')">
+          <img src="../assets/portfolio/prodectDesign_3.png" alt="产品设计">
           <div class="portfolio-overlay">
-            <h4>动画短片</h4>
-            <span>动画制作</span>
-          </div>
-        </div>
-        <div class="portfolio-item animate-on-scroll" data-category="animation" @click="openPreview('qp', '动画短片', '动画制作', 'video')">
-          <img src="../assets/portfolio/project4.jpg" alt="动画短片">
-          <div class="portfolio-overlay">
-            <h4>动画短片</h4>
-            <span>动画制作</span>
-          </div>
-        </div>
-        <div class="portfolio-item animate-on-scroll" data-category="animation" @click="openPreview('kqzg', '动画短片', '动画制作', 'video')">
-          <img src="../assets/portfolio/project4.jpg" alt="动画短片">
-          <div class="portfolio-overlay">
-            <h4>动画短片</h4>
-            <span>动画制作</span>
-          </div>
-        </div>
-        <div class="portfolio-item animate-on-scroll" data-category="graphic" @click="openPreview('project5', '平面设计', '平面设计', 'video')">
-          <img src="../assets/portfolio/project5.jpg" alt="平面设计">
-          <div class="portfolio-overlay">
-            <h4>平面设计</h4>
-            <span>平面设计</span>
-          </div>
-        </div>
-        <div class="portfolio-item animate-on-scroll" data-category="product" @click="openPreview('project6', '产品展示', '产品设计', 'video')">
-          <img src="../assets/portfolio/project6.jpg" alt="产品展示">
-          <div class="portfolio-overlay">
-            <h4>产品展示</h4>
+            <h4>产品设计</h4>
             <span>产品设计</span>
           </div>
         </div>
+        <div class="portfolio-item animate-on-scroll" data-category="graphic"
+          @click="openPreview('rili', '日历', '平面设计', 'img')">
+          <img src="../assets/portfolio/rili/rili_2.png" alt="日历">
+          <div class="portfolio-overlay">
+            <h4>日历</h4>
+            <span>平面设计</span>
+          </div>
+        </div>
+        <div class="portfolio-item animate-on-scroll" data-category="graphic"
+          @click="openPreview('bz', '包装', '平面设计', 'img')">
+          <img src="../assets/portfolio/bz/bz_1.jpg" alt="包装">
+          <div class="portfolio-overlay">
+            <h4>包装</h4>
+            <span>平面设计</span>
+          </div>
+        </div>
+
       </div>
     </div>
 
     <div v-if="showPreview" class="preview-modal" @click="closePreview">
       <div class="preview-content" @click.stop>
-        <button class="preview-close" @click="closePreview">&times;</button>
+        <button class="preview-close mobile-only" @click="closePreview">&times;</button>
         <video v-if="previewType === 'video'" :src="previewVideo" controls autoplay muted loop>
           您的浏览器不支持视频播放。
         </video>
-        <img v-else :src="previewImage" :alt="previewTitle">
+        <div v-else class="image-carousel">
+          <button v-if="imageList.length > 1" class="carousel-btn prev-btn" @click="prevImage">&#10094;</button>
+          <img :src="previewImage" :alt="previewTitle">
+          <button v-if="imageList.length > 1" class="carousel-btn next-btn" @click="nextImage">&#10095;</button>
+        </div>
+        <div v-if="imageList.length > 1" class="carousel-indicators">
+          <span v-for="(img, index) in imageList" :key="index"
+            :class="['indicator', { active: index === currentImageIndex }]"
+            @click="currentImageIndex = index; previewImage = imageList[index]"></span>
+        </div>
         <h3>{{ previewTitle }}</h3>
         <p>{{ previewCategory }}</p>
       </div>
@@ -96,13 +130,66 @@ export default {
       previewVideo: '',
       previewTitle: '',
       previewCategory: '',
-      previewType: 'image'
+      previewType: 'image',
+      imageList: [],
+      currentImageIndex: 0,
+      touchStartX: 0,
+      touchEndX: 0
     }
   },
   mounted() {
     this.initFilterButtons()
+    this.initDefaultFilter()
+    document.addEventListener('keydown', this.handleKeydown)
+    document.addEventListener('touchstart', this.handleTouchStart)
+    document.addEventListener('touchend', this.handleTouchEnd)
+  },
+  beforeUnmount() {
+    document.removeEventListener('keydown', this.handleKeydown)
+    document.removeEventListener('touchstart', this.handleTouchStart)
+    document.removeEventListener('touchend', this.handleTouchEnd)
   },
   methods: {
+    handleKeydown(e) {
+      if (e.key === 'Escape' && this.showPreview) {
+        this.closePreview()
+      }
+    },
+    handleTouchStart(e) {
+      this.touchStartX = e.changedTouches[0].screenX
+    },
+    handleTouchEnd(e) {
+      this.touchEndX = e.changedTouches[0].screenX
+      this.handleSwipe()
+    },
+    handleSwipe() {
+      if (!this.showPreview || this.imageList.length <= 1) return
+      const swipeThreshold = 50
+      const diff = this.touchStartX - this.touchEndX
+      if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0) {
+          this.nextImage()
+        } else {
+          this.prevImage()
+        }
+      }
+    },
+    initDefaultFilter() {
+      const filterBtns = document.querySelectorAll('.filter-btn')
+      const portfolioItems = document.querySelectorAll('.portfolio-item')
+
+      filterBtns.forEach(btn => {
+        if (btn.getAttribute('data-filter') === 'all') {
+          btn.classList.add('active')
+        } else {
+          btn.classList.remove('active')
+        }
+      })
+
+      portfolioItems.forEach(item => {
+        item.style.display = 'block'
+      })
+    },
     initFilterButtons() {
       const filterBtns = document.querySelectorAll('.filter-btn')
       const portfolioItems = document.querySelectorAll('.portfolio-item')
@@ -124,22 +211,52 @@ export default {
         })
       })
     },
-    openPreview(itemName, title, category, type = 'image') {
+    async openPreview(itemName, title, category, type = 'image') {
       this.previewTitle = title
       this.previewCategory = category
       this.previewType = type
-      
-      // 腾讯云 COS 视频基础 URL
+
       const cosBaseUrl = 'https://blog-1408692413.cos.ap-shanghai.myqcloud.com/videos'
-      
+
       if (type === 'video') {
-        // 使用腾讯云 COS 视频链接
         this.previewVideo = `${cosBaseUrl}/${itemName}.mp4`
       } else {
-        this.previewImage = new URL(`../assets/portfolio/${itemName}.jpg`, import.meta.url).href
+        try {
+          const imageModules = import.meta.glob('../assets/portfolio/**/*.{jpg,jpeg,png,gif,webp}')
+          const folderImages = []
+          const nameImages = []
+
+          for (const path in imageModules) {
+            if (path.includes(`portfolio/${itemName}/`)) {
+              const module = await imageModules[path]()
+              folderImages.push(module.default)
+            } else if (new RegExp(`portfolio/${itemName}\\\.[jpg|jpeg|png|gif|webp]`).test(path)) {
+              const module = await imageModules[path]()
+              nameImages.push(module.default)
+            }
+          }
+
+          if (folderImages.length > 0) {
+            folderImages.sort()
+            this.imageList = folderImages
+            this.currentImageIndex = 0
+            this.previewImage = this.imageList[0]
+          } else if (nameImages.length > 0) {
+            this.imageList = nameImages
+            this.currentImageIndex = 0
+            this.previewImage = this.imageList[0]
+          } else {
+            this.previewImage = new URL(`../assets/portfolio/${itemName}.jpg`, import.meta.url).href
+            this.imageList = [this.previewImage]
+          }
+        } catch (error) {
+          this.previewImage = new URL(`../assets/portfolio/${itemName}.jpg`, import.meta.url).href
+          this.imageList = [this.previewImage]
+        }
       }
-      
+
       this.showPreview = true
+      document.body.style.overflow = 'hidden'
     },
     closePreview() {
       this.showPreview = false
@@ -148,6 +265,21 @@ export default {
       this.previewTitle = ''
       this.previewCategory = ''
       this.previewType = 'image'
+      this.imageList = []
+      this.currentImageIndex = 0
+      document.body.style.overflow = ''
+    },
+    prevImage() {
+      if (this.imageList.length > 0) {
+        this.currentImageIndex = (this.currentImageIndex - 1 + this.imageList.length) % this.imageList.length
+        this.previewImage = this.imageList[this.currentImageIndex]
+      }
+    },
+    nextImage() {
+      if (this.imageList.length > 0) {
+        this.currentImageIndex = (this.currentImageIndex + 1) % this.imageList.length
+        this.previewImage = this.imageList[this.currentImageIndex]
+      }
     }
   }
 }
@@ -186,11 +318,83 @@ export default {
 }
 
 .preview-content img {
-  width: 100%;
   max-width: 100%;
   max-height: 85vh;
   object-fit: contain;
   border-radius: 5px;
+}
+
+.image-carousel {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: var(--transition-fast);
+  z-index: 5;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.image-carousel:hover .carousel-btn {
+  opacity: 1;
+  visibility: visible;
+}
+
+.carousel-btn:hover {
+  background: var(--accent-color);
+}
+
+.prev-btn {
+  left: 10px;
+}
+
+.next-btn {
+  right: 10px;
+}
+
+.carousel-indicators {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  z-index: 5;
+  margin: 10px 0;
+}
+
+.indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.indicator:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.indicator.active {
+  background: var(--accent-color);
+  width: 12px;
+  height: 12px;
 }
 
 .preview-content video {
@@ -215,31 +419,31 @@ export default {
   text-align: center;
 }
 
-.preview-close {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 40px;
-  height: 40px;
-  border: none;
-  background: var(--bg-tertiary);
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 24px;
-  color: var(--text-primary);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: var(--transition-fast);
-  z-index: 10;
-}
-
-.preview-close:hover {
-  background: var(--accent-color);
-  color: var(--bg-primary);
+.mobile-only {
+  display: none;
 }
 
 @media (max-width: 768px) {
+  .mobile-only {
+    display: flex;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: var(--bg-tertiary);
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 22px;
+    color: var(--text-primary);
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    line-height: 32px;
+    padding: 0;
+  }
+
   .preview-content {
     padding: 0;
     margin: 0;
@@ -260,11 +464,28 @@ export default {
     margin: 5px 0;
   }
 
-  .preview-close {
-    top: 15px;
-    right: 15px;
-    width: 35px;
-    height: 35px;
+  .carousel-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .prev-btn {
+    left: 10px;
+  }
+
+  .next-btn {
+    right: 10px;
+  }
+
+  .indicator {
+    width: 8px;
+    height: 8px;
+  }
+
+  .indicator.active {
+    width: 10px;
+    height: 10px;
   }
 }
 </style>
