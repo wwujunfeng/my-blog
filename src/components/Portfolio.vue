@@ -3,7 +3,10 @@
     <div class="container">
       <div v-if="!allImagesLoaded" class="portfolio-loading">
         <div class="loading-spinner"></div>
-        <p>正在加载图片...</p>
+        <p>正在加载图片... {{ loadProgress }}%</p>
+        <div class="progress-bar">
+          <div class="progress-bar-fill" :style="{ width: loadProgress + '%' }"></div>
+        </div>
       </div>
       <div class="section-header">
         <h2 class="section-title">我的作品集</h2>
@@ -139,7 +142,8 @@ export default {
       currentImageIndex: 0,
       touchStartX: 0,
       touchEndX: 0,
-      allImagesLoaded: false
+      allImagesLoaded: false,
+      loadProgress: 0
     }
   },
   async mounted() {
@@ -165,11 +169,26 @@ export default {
         imageUrls.add(module.default)
       }
       
+      const totalImages = imageUrls.size
+      let loadedCount = 0
+      
       const loadPromises = Array.from(imageUrls).map(url => {
         return new Promise((resolve) => {
           const img = new Image()
-          img.onload = () => resolve()
-          img.onerror = () => resolve()
+          
+          const checkComplete = () => {
+            loadedCount++
+            this.loadProgress = Math.round((loadedCount / totalImages) * 100)
+            resolve()
+          }
+          
+          if (img.complete) {
+            checkComplete()
+          } else {
+            img.onload = checkComplete
+            img.onerror = checkComplete
+          }
+          
           img.src = url
         })
       })
@@ -314,11 +333,17 @@ export default {
 
 <style scoped>
 .portfolio-loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 60px 20px;
+  background-color: var(--bg-color);
+  z-index: 9999;
   color: var(--text-secondary);
 }
 
@@ -334,6 +359,21 @@ export default {
 
 @keyframes spin {
   to { transform: rotate(360deg); }
+}
+
+.progress-bar {
+  width: 200px;
+  height: 4px;
+  background-color: var(--border-color);
+  border-radius: 2px;
+  margin-top: 20px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: var(--accent-color);
+  transition: width 0.3s ease;
 }
 
 .preview-modal {
