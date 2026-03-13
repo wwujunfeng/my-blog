@@ -207,7 +207,7 @@ export default {
     height: 100vh;
     background: var(--bg-secondary);
     flex-direction: column;
-    padding: 100px 40px;
+    padding: 200px 40px;
     gap: 25px;
     transition: var(--transition-normal);
   }
