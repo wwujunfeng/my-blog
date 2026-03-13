@@ -1,6 +1,10 @@
 <template>
   <section id="portfolio" class="section">
     <div class="container">
+      <div v-if="!allImagesLoaded" class="portfolio-loading">
+        <div class="loading-spinner"></div>
+        <p>正在加载图片...</p>
+      </div>
       <div class="section-header">
         <h2 class="section-title">我的作品集</h2>
         <div class="line"></div>
@@ -135,13 +139,13 @@ export default {
       currentImageIndex: 0,
       touchStartX: 0,
       touchEndX: 0,
-      preloadCache: new Map(),
-      switchTimer: null
+      allImagesLoaded: false
     }
   },
   async mounted() {
     this.initFilterButtons()
     this.initDefaultFilter()
+    await this.preloadAllImages()
     document.addEventListener('keydown', this.handleKeydown)
     document.addEventListener('touchstart', this.handleTouchStart)
     document.addEventListener('touchend', this.handleTouchEnd)
@@ -152,32 +156,26 @@ export default {
     document.removeEventListener('touchend', this.handleTouchEnd)
   },
   methods: {
-    async loadImage(url) {
-      if (this.preloadCache.has(url)) {
-        return this.preloadCache.get(url)
+    async preloadAllImages() {
+      const imageModules = import.meta.glob('../assets/portfolio/**/*.{jpg,jpeg,png,gif,webp}')
+      const imageUrls = new Set()
+      
+      for (const path in imageModules) {
+        const module = await imageModules[path]()
+        imageUrls.add(module.default)
       }
       
-      return new Promise((resolve, reject) => {
-        const img = new Image()
-        img.onload = () => {
-          this.preloadCache.set(url, url)
-          resolve(url)
-        }
-        img.onerror = () => {
-          this.preloadCache.set(url, url)
-          resolve(url)
-        }
-        img.src = url
+      const loadPromises = Array.from(imageUrls).map(url => {
+        return new Promise((resolve) => {
+          const img = new Image()
+          img.onload = () => resolve()
+          img.onerror = () => resolve()
+          img.src = url
+        })
       })
-    },
-    async preloadAdjacentImages() {
-      if (this.imageList.length <= 1) return
       
-      const prevIndex = (this.currentImageIndex - 1 + this.imageList.length) % this.imageList.length
-      const nextIndex = (this.currentImageIndex + 1) % this.imageList.length
-      
-      this.loadImage(this.imageList[prevIndex])
-      this.loadImage(this.imageList[nextIndex])
+      await Promise.all(loadPromises)
+      this.allImagesLoaded = true
     },
     handleKeydown(e) {
       if (e.key === 'Escape' && this.showPreview) {
@@ -286,7 +284,6 @@ export default {
 
       this.showPreview = true
       document.body.style.overflow = 'hidden'
-      await this.preloadAdjacentImages()
     },
     closePreview() {
       this.showPreview = false
@@ -300,34 +297,45 @@ export default {
       document.body.style.overflow = ''
     },
     prevImage() {
-      if (this.switchTimer) {
-        clearTimeout(this.switchTimer)
+      if (this.imageList.length > 0) {
+        this.currentImageIndex = (this.currentImageIndex - 1 + this.imageList.length) % this.imageList.length
+        this.previewImage = this.imageList[this.currentImageIndex]
       }
-      this.switchTimer = setTimeout(async () => {
-        if (this.imageList.length > 0) {
-          this.currentImageIndex = (this.currentImageIndex - 1 + this.imageList.length) % this.imageList.length
-          this.previewImage = this.imageList[this.currentImageIndex]
-          await this.preloadAdjacentImages()
-        }
-      }, 50)
     },
     nextImage() {
-      if (this.switchTimer) {
-        clearTimeout(this.switchTimer)
+      if (this.imageList.length > 0) {
+        this.currentImageIndex = (this.currentImageIndex + 1) % this.imageList.length
+        this.previewImage = this.imageList[this.currentImageIndex]
       }
-      this.switchTimer = setTimeout(async () => {
-        if (this.imageList.length > 0) {
-          this.currentImageIndex = (this.currentImageIndex + 1) % this.imageList.length
-          this.previewImage = this.imageList[this.currentImageIndex]
-          await this.preloadAdjacentImages()
-        }
-      }, 50)
     }
   }
 }
 </script>
 
 <style scoped>
+.portfolio-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  color: var(--text-secondary);
+}
+
+.portfolio-loading .loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border-color);
+  border-top-color: var(--accent-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 .preview-modal {
   position: fixed;
   top: 0;
