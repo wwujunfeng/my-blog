@@ -7,8 +7,7 @@
     "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview",
-    "convert-images": "node scripts/convert-to-webp.js",
-    "generate-thumbnails": "node scripts/generate-thumbnails.js"
+    "convert-images": "node scripts/convert-to-webp.js"
   },
   "dependencies": {
     "bootstrap": "^4.3.1",

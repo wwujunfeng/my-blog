@@ -19,7 +19,7 @@
       <div class="portfolio-grid">
         <div class="portfolio-item animate-on-scroll" data-category="3d"
           @click="openPreview('zdcfj', '吹风机', '3D渲染', 'img')">
-          <img src="../assets/portfolio/thumbnails/zdcfj/zdcfj_1.webp" alt="吹风机">
+          <img src="../assets/portfolio/zdcfj/zdcfj_1.webp" alt="吹风机">
           <div class="portfolio-overlay">
             <h4>吹风机</h4>
             <span>3D渲染</span>
@@ -43,7 +43,7 @@
         </div>
         <div class="portfolio-item animate-on-scroll" data-category="animation"
           @click="openPreview('cfj', '动画短片', '动画制作', 'video')">
-          <img src="../assets/portfolio/thumbnails/cfj.webp" alt="动画短片">
+          <img src="../assets/portfolio/cfj.webp" alt="动画短片">
           <div class="portfolio-overlay">
             <h4>动画短片</h4>
             <span>动画制作</span>
@@ -67,7 +67,7 @@
         </div>
                 <div class="portfolio-item animate-on-scroll" data-category="product"
           @click="openPreview('prodectDesign_1', '产品设计', '产品设计', 'img')">
-          <img src="../assets/portfolio/thumbnails/prodectDesign_1.webp" alt="产品设计">
+          <img src="../assets/portfolio/prodectDesign_1.webp" alt="产品设计">
           <div class="portfolio-overlay">
             <h4>产品设计</h4>
             <span>产品设计</span>
@@ -91,7 +91,7 @@
         </div>
         <div class="portfolio-item animate-on-scroll" data-category="graphic"
           @click="openPreview('bz', '包装', '平面设计', 'img')">
-          <img src="../assets/portfolio/thumbnails/bz/bz_1.webp" alt="包装">
+          <img src="../assets/portfolio/bz/bz_1.webp" alt="包装">
           <div class="portfolio-overlay">
             <h4>包装</h4>
             <span>平面设计</span>
@@ -157,7 +157,7 @@ export default {
   },
   methods: {
     async preloadAllImages() {
-      const imageModules = import.meta.glob('../assets/portfolio/thumbnails/**/*.{jpg,jpeg,png,gif,webp}')
+      const imageModules = import.meta.glob('../assets/portfolio/**/*.{jpg,jpeg,png,gif,webp}')
       const imageUrls = new Set()
       
       for (const path in imageModules) {
