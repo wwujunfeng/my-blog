@@ -21,7 +21,7 @@
       <div class="portfolio-grid">
         <div class="portfolio-item animate-on-scroll" data-category="3d"
           @click="openPreview('zdcfj', '吹风机', '3D渲染', 'img')">
-          <img src="../assets/portfolio/zdcfj/zdcfj_1.png" alt="吹风机">
+          <img src="../assets/portfolio/zdcfj/zdcfj_1.webp" alt="吹风机">
           <div class="portfolio-overlay">
             <h4>吹风机</h4>
             <span>3D渲染</span>
@@ -29,7 +29,7 @@
         </div>
         <div class="portfolio-item animate-on-scroll" data-category="3d"
           @click="openPreview('jsqc', '健身用品', '3D渲染', 'img')">
-          <img src="../assets/portfolio/jsqc/jsqc_1.jpg" alt="健身用品">
+          <img src="../assets/portfolio/jsqc/jsqc_1.webp" alt="健身用品">
           <div class="portfolio-overlay">
             <h4>健身用品</h4>
             <span>3D渲染</span>
@@ -37,7 +37,7 @@
         </div>
         <div class="portfolio-item animate-on-scroll" data-category="3d"
           @click="openPreview('hbc', '滑板车', '3D渲染', 'img')">
-          <img src="../assets/portfolio/hbc/hbc_1.jpg" alt="滑板车">
+          <img src="../assets/portfolio/hbc/hbc_1.webp" alt="滑板车">
           <div class="portfolio-overlay">
             <h4>滑板车</h4>
             <span>3D渲染</span>
@@ -45,7 +45,7 @@
         </div>
         <div class="portfolio-item animate-on-scroll" data-category="animation"
           @click="openPreview('cfj', '动画短片', '动画制作', 'video')">
-          <img src="../assets/portfolio/cfj.jpg" alt="动画短片">
+          <img src="../assets/portfolio/cfj.webp" alt="动画短片">
           <div class="portfolio-overlay">
             <h4>动画短片</h4>
             <span>动画制作</span>
@@ -53,7 +53,7 @@
         </div>
         <div class="portfolio-item animate-on-scroll" data-category="animation"
           @click="openPreview('qp', '动画短片', '动画制作', 'video')">
-          <img src="../assets/portfolio/qp.jpg" alt="动画短片">
+          <img src="../assets/portfolio/qp.webp" alt="动画短片">
           <div class="portfolio-overlay">
             <h4>动画短片</h4>
             <span>动画制作</span>
@@ -61,7 +61,7 @@
         </div>
         <div class="portfolio-item animate-on-scroll" data-category="animation"
           @click="openPreview('kqzg', '动画短片', '动画制作', 'video')">
-          <img src="../assets/portfolio/kqzg.jpg" alt="动画短片">
+          <img src="../assets/portfolio/kqzg.webp" alt="动画短片">
           <div class="portfolio-overlay">
             <h4>动画短片</h4>
             <span>动画制作</span>
@@ -69,7 +69,7 @@
         </div>
                 <div class="portfolio-item animate-on-scroll" data-category="product"
           @click="openPreview('prodectDesign_1', '产品设计', '产品设计', 'img')">
-          <img src="../assets/portfolio/prodectDesign_1.jpg" alt="产品设计">
+          <img src="../assets/portfolio/prodectDesign_1.webp" alt="产品设计">
           <div class="portfolio-overlay">
             <h4>产品设计</h4>
             <span>产品设计</span>
@@ -77,7 +77,7 @@
         </div>
         <div class="portfolio-item animate-on-scroll" data-category="product"
           @click="openPreview('prodectDesign_3', '产品设计', '产品设计', 'img')">
-          <img src="../assets/portfolio/prodectDesign_3.png" alt="产品设计">
+          <img src="../assets/portfolio/prodectDesign_3.webp" alt="产品设计">
           <div class="portfolio-overlay">
             <h4>产品设计</h4>
             <span>产品设计</span>
@@ -85,7 +85,7 @@
         </div>
         <div class="portfolio-item animate-on-scroll" data-category="graphic"
           @click="openPreview('rili', '日历', '平面设计', 'img')">
-          <img src="../assets/portfolio/rili/rili_2.png" alt="日历">
+          <img src="../assets/portfolio/rili/rili_2.webp" alt="日历">
           <div class="portfolio-overlay">
             <h4>日历</h4>
             <span>平面设计</span>
@@ -93,7 +93,7 @@
         </div>
         <div class="portfolio-item animate-on-scroll" data-category="graphic"
           @click="openPreview('bz', '包装', '平面设计', 'img')">
-          <img src="../assets/portfolio/bz/bz_1.jpg" alt="包装">
+          <img src="../assets/portfolio/bz/bz_1.webp" alt="包装">
           <div class="portfolio-overlay">
             <h4>包装</h4>
             <span>平面设计</span>
@@ -289,7 +289,7 @@ export default {
           this.currentImageIndex = 0
           this.previewImage = this.imageList[0]
         } else {
-          this.previewImage = new URL(`../assets/portfolio/${itemName}.jpg`, import.meta.url).href
+          this.previewImage = new URL(`../assets/portfolio/${itemName}.webp`, import.meta.url).href
           this.imageList = [this.previewImage]
         }
       }
