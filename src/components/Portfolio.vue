@@ -5,6 +5,12 @@
         <h2 class="section-title">我的作品集</h2>
         <div class="line"></div>
       </div>
+      <div v-if="isLoading" class="loading-overlay">
+        <div class="loading-content">
+          <div class="loading-spinner"></div>
+          <p>正在加载图片资源... {{ loadingProgress }}%</p>
+        </div>
+      </div>
       <div class="portfolio-filter">
         <button class="filter-btn active" data-filter="all">全部</button>
         <button class="filter-btn" data-filter="3d">3D渲染</button>
@@ -134,12 +140,18 @@ export default {
       imageList: [],
       currentImageIndex: 0,
       touchStartX: 0,
-      touchEndX: 0
+      touchEndX: 0,
+      preloadedImages: {},
+      isLoading: false,
+      loadingProgress: 0,
+      totalImages: 0,
+      loadedImages: 0
     }
   },
-  mounted() {
+  async mounted() {
     this.initFilterButtons()
     this.initDefaultFilter()
+    await this.preloadAllImages()
     document.addEventListener('keydown', this.handleKeydown)
     document.addEventListener('touchstart', this.handleTouchStart)
     document.addEventListener('touchend', this.handleTouchEnd)
@@ -150,6 +162,41 @@ export default {
     document.removeEventListener('touchend', this.handleTouchEnd)
   },
   methods: {
+    async preloadAllImages() {
+      this.isLoading = true
+      const imageModules = import.meta.glob('../assets/portfolio/**/*.{jpg,jpeg,png,gif,webp}')
+      const imageUrls = []
+      
+      for (const path in imageModules) {
+        const module = await imageModules[path]()
+        imageUrls.push({ path, url: module.default })
+      }
+      
+      this.totalImages = imageUrls.length
+      this.loadedImages = 0
+      
+      const loadPromises = imageUrls.map(async ({ path, url }) => {
+        return new Promise((resolve) => {
+          const img = new Image()
+          img.onload = () => {
+            this.loadedImages++
+            this.loadingProgress = Math.round((this.loadedImages / this.totalImages) * 100)
+            this.preloadedImages[path] = url
+            resolve()
+          }
+          img.onerror = () => {
+            this.loadedImages++
+            this.loadingProgress = Math.round((this.loadedImages / this.totalImages) * 100)
+            this.preloadedImages[path] = url
+            resolve()
+          }
+          img.src = url
+        })
+      })
+      
+      await Promise.all(loadPromises)
+      this.isLoading = false
+    },
     handleKeydown(e) {
       if (e.key === 'Escape' && this.showPreview) {
         this.closePreview()
@@ -211,7 +258,7 @@ export default {
         })
       })
     },
-    async openPreview(itemName, title, category, type = 'image') {
+    openPreview(itemName, title, category, type = 'image') {
       this.previewTitle = title
       this.previewCategory = category
       this.previewType = type
@@ -221,35 +268,27 @@ export default {
       if (type === 'video') {
         this.previewVideo = `${cosBaseUrl}/${itemName}.mp4`
       } else {
-        try {
-          const imageModules = import.meta.glob('../assets/portfolio/**/*.{jpg,jpeg,png,gif,webp}')
-          const folderImages = []
-          const nameImages = []
+        const folderImages = []
+        const nameImages = []
 
-          for (const path in imageModules) {
-            if (path.includes(`portfolio/${itemName}/`)) {
-              const module = await imageModules[path]()
-              folderImages.push(module.default)
-            } else if (new RegExp(`portfolio/${itemName}\\\.[jpg|jpeg|png|gif|webp]`).test(path)) {
-              const module = await imageModules[path]()
-              nameImages.push(module.default)
-            }
+        for (const path in this.preloadedImages) {
+          if (path.includes(`portfolio/${itemName}/`)) {
+            folderImages.push(this.preloadedImages[path])
+          } else if (new RegExp(`portfolio/${itemName}\\\.[jpg|jpeg|png|gif|webp]`).test(path)) {
+            nameImages.push(this.preloadedImages[path])
           }
+        }
 
-          if (folderImages.length > 0) {
-            folderImages.sort()
-            this.imageList = folderImages
-            this.currentImageIndex = 0
-            this.previewImage = this.imageList[0]
-          } else if (nameImages.length > 0) {
-            this.imageList = nameImages
-            this.currentImageIndex = 0
-            this.previewImage = this.imageList[0]
-          } else {
-            this.previewImage = new URL(`../assets/portfolio/${itemName}.jpg`, import.meta.url).href
-            this.imageList = [this.previewImage]
-          }
-        } catch (error) {
+        if (folderImages.length > 0) {
+          folderImages.sort()
+          this.imageList = folderImages
+          this.currentImageIndex = 0
+          this.previewImage = this.imageList[0]
+        } else if (nameImages.length > 0) {
+          this.imageList = nameImages
+          this.currentImageIndex = 0
+          this.previewImage = this.imageList[0]
+        } else {
           this.previewImage = new URL(`../assets/portfolio/${itemName}.jpg`, import.meta.url).href
           this.imageList = [this.previewImage]
         }
@@ -286,6 +325,45 @@ export default {
 </script>
 
 <style scoped>
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loading-content {
+  text-align: center;
+  color: white;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top-color: var(--accent-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-content p {
+  font-size: 16px;
+  margin: 0;
+}
+
 .preview-modal {
   position: fixed;
   top: 0;
