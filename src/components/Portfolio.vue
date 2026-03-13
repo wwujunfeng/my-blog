@@ -22,7 +22,7 @@
       <div class="portfolio-grid">
         <div class="portfolio-item animate-on-scroll" data-category="3d"
           @click="openPreview('zdcfj', '吹风机', '3D渲染', 'img')">
-          <img src="../assets/portfolio/zdcfj/zdcfj_1.webp" alt="吹风机">
+          <img :src="`${COS_BASE_URL}/portfolio/zdcfj/zdcfj_1.webp`" alt="吹风机">
           <div class="portfolio-overlay">
             <h4>吹风机</h4>
             <span>3D渲染</span>
@@ -30,7 +30,7 @@
         </div>
         <div class="portfolio-item animate-on-scroll" data-category="3d"
           @click="openPreview('jsqc', '健身用品', '3D渲染', 'img')">
-          <img src="../assets/portfolio/jsqc/jsqc_1.webp" alt="健身用品">
+          <img :src="`${COS_BASE_URL}/portfolio/jsqc/jsqc_1.webp`" alt="健身用品">
           <div class="portfolio-overlay">
             <h4>健身用品</h4>
             <span>3D渲染</span>
@@ -38,7 +38,7 @@
         </div>
         <div class="portfolio-item animate-on-scroll" data-category="3d"
           @click="openPreview('hbc', '滑板车', '3D渲染', 'img')">
-          <img src="../assets/portfolio/hbc/hbc_1.webp" alt="滑板车">
+          <img :src="`${COS_BASE_URL}/portfolio/hbc/hbc_1.webp`" alt="滑板车">
           <div class="portfolio-overlay">
             <h4>滑板车</h4>
             <span>3D渲染</span>
@@ -46,7 +46,7 @@
         </div>
         <div class="portfolio-item animate-on-scroll" data-category="animation"
           @click="openPreview('cfj', '动画短片', '动画制作', 'video')">
-          <img src="../assets/portfolio/cfj.webp" alt="动画短片">
+          <img :src="`${COS_BASE_URL}/portfolio/cfj.webp`" alt="动画短片">
           <div class="portfolio-overlay">
             <h4>动画短片</h4>
             <span>动画制作</span>
@@ -54,7 +54,7 @@
         </div>
         <div class="portfolio-item animate-on-scroll" data-category="animation"
           @click="openPreview('qp', '动画短片', '动画制作', 'video')">
-          <img src="../assets/portfolio/qp.webp" alt="动画短片">
+          <img :src="`${COS_BASE_URL}/portfolio/qp.webp`" alt="动画短片">
           <div class="portfolio-overlay">
             <h4>动画短片</h4>
             <span>动画制作</span>
@@ -62,7 +62,7 @@
         </div>
         <div class="portfolio-item animate-on-scroll" data-category="animation"
           @click="openPreview('kqzg', '动画短片', '动画制作', 'video')">
-          <img src="../assets/portfolio/kqzg.webp" alt="动画短片">
+          <img :src="`${COS_BASE_URL}/portfolio/kqzg.webp`" alt="动画短片">
           <div class="portfolio-overlay">
             <h4>动画短片</h4>
             <span>动画制作</span>
@@ -70,7 +70,7 @@
         </div>
                 <div class="portfolio-item animate-on-scroll" data-category="product"
           @click="openPreview('prodectDesign_1', '产品设计', '产品设计', 'img')">
-          <img src="../assets/portfolio/prodectDesign_1.webp" alt="产品设计">
+          <img :src="`${COS_BASE_URL}/portfolio/prodectDesign_1.webp`" alt="产品设计">
           <div class="portfolio-overlay">
             <h4>产品设计</h4>
             <span>产品设计</span>
@@ -78,7 +78,7 @@
         </div>
         <div class="portfolio-item animate-on-scroll" data-category="product"
           @click="openPreview('prodectDesign_3', '产品设计', '产品设计', 'img')">
-          <img src="../assets/portfolio/prodectDesign_3.webp" alt="产品设计">
+          <img :src="`${COS_BASE_URL}/portfolio/prodectDesign_3.webp`" alt="产品设计">
           <div class="portfolio-overlay">
             <h4>产品设计</h4>
             <span>产品设计</span>
@@ -86,7 +86,7 @@
         </div>
         <div class="portfolio-item animate-on-scroll" data-category="graphic"
           @click="openPreview('rili', '日历', '平面设计', 'img')">
-          <img src="../assets/portfolio/rili/rili_2.webp" alt="日历">
+          <img :src="`${COS_BASE_URL}/portfolio/rili/rili_2.webp`" alt="日历">
           <div class="portfolio-overlay">
             <h4>日历</h4>
             <span>平面设计</span>
@@ -94,7 +94,7 @@
         </div>
         <div class="portfolio-item animate-on-scroll" data-category="graphic"
           @click="openPreview('bz', '包装', '平面设计', 'img')">
-          <img src="../assets/portfolio/bz/bz_1.webp" alt="包装">
+          <img :src="`${COS_BASE_URL}/portfolio/bz/bz_1.webp`" alt="包装">
           <div class="portfolio-overlay">
             <h4>包装</h4>
             <span>平面设计</span>
@@ -132,6 +132,7 @@ export default {
   name: 'Portfolio',
   data() {
     return {
+      COS_BASE_URL: 'https://blog-1408692413.cos.ap-shanghai.myqcloud.com',
       showPreview: false,
       previewImage: '',
       previewVideo: '',
@@ -143,7 +144,8 @@ export default {
       touchStartX: 0,
       touchEndX: 0,
       allImagesLoaded: false,
-      loadProgress: 0
+      loadProgress: 0,
+      isSwitching: false
     }
   },
   async mounted() {
@@ -161,13 +163,16 @@ export default {
   },
   methods: {
     async preloadAllImages() {
+      const cosBaseUrl = this.COS_BASE_URL + '/portfolio'
       const imageModules = import.meta.glob('../assets/portfolio/**/*.{jpg,jpeg,png,gif,webp}')
       const imageUrls = new Set()
       
       for (const path in imageModules) {
-        const module = await imageModules[path]()
-        imageUrls.add(module.default)
+        const fileName = path.replace('../assets/portfolio/', '')
+        imageUrls.add(`${cosBaseUrl}/${fileName}`)
       }
+      
+      document.body.style.overflow = 'hidden'
       
       const totalImages = imageUrls.size
       let loadedCount = 0
@@ -195,6 +200,7 @@ export default {
       
       await Promise.all(loadPromises)
       this.allImagesLoaded = true
+      document.body.style.overflow = ''
     },
     handleKeydown(e) {
       if (e.key === 'Escape' && this.showPreview) {
@@ -262,41 +268,35 @@ export default {
       this.previewCategory = category
       this.previewType = type
 
-      const cosBaseUrl = 'https://blog-1408692413.cos.ap-shanghai.myqcloud.com/videos'
-
       if (type === 'video') {
-        this.previewVideo = `${cosBaseUrl}/${itemName}.mp4`
+        this.previewVideo = `${this.COS_BASE_URL}/videos/${itemName}.mp4`
       } else {
         try {
+          const portfolioBaseUrl = `${this.COS_BASE_URL}/portfolio`
+          const imageList = []
+          
           const imageModules = import.meta.glob('../assets/portfolio/**/*.{jpg,jpeg,png,gif,webp}')
-          const folderImages = []
-          const nameImages = []
-
+          
           for (const path in imageModules) {
             if (path.includes(`portfolio/${itemName}/`)) {
-              const module = await imageModules[path]()
-              folderImages.push(module.default)
+              const fileName = path.split('/').pop()
+              imageList.push(`${portfolioBaseUrl}/${itemName}/${fileName}`)
             } else if (new RegExp(`portfolio/${itemName}\\\.[jpg|jpeg|png|gif|webp]`).test(path)) {
-              const module = await imageModules[path]()
-              nameImages.push(module.default)
+              imageList.push(`${portfolioBaseUrl}/${itemName}.webp`)
             }
           }
 
-          if (folderImages.length > 0) {
-            folderImages.sort()
-            this.imageList = folderImages
-            this.currentImageIndex = 0
-            this.previewImage = this.imageList[0]
-          } else if (nameImages.length > 0) {
-            this.imageList = nameImages
+          if (imageList.length > 0) {
+            imageList.sort()
+            this.imageList = imageList
             this.currentImageIndex = 0
             this.previewImage = this.imageList[0]
           } else {
-            this.previewImage = new URL(`../assets/portfolio/${itemName}.webp`, import.meta.url).href
+            this.previewImage = `${portfolioBaseUrl}/${itemName}.webp`
             this.imageList = [this.previewImage]
           }
         } catch (error) {
-          this.previewImage = new URL(`../assets/portfolio/${itemName}.webp`, import.meta.url).href
+          this.previewImage = `${this.COS_BASE_URL}/portfolio/${itemName}.webp`
           this.imageList = [this.previewImage]
         }
       }
@@ -316,16 +316,22 @@ export default {
       document.body.style.overflow = ''
     },
     prevImage() {
-      if (this.imageList.length > 0) {
-        this.currentImageIndex = (this.currentImageIndex - 1 + this.imageList.length) % this.imageList.length
-        this.previewImage = this.imageList[this.currentImageIndex]
-      }
+      if (this.isSwitching || this.imageList.length <= 1) return
+      this.isSwitching = true
+      this.currentImageIndex = (this.currentImageIndex - 1 + this.imageList.length) % this.imageList.length
+      this.previewImage = this.imageList[this.currentImageIndex]
+      setTimeout(() => {
+        this.isSwitching = false
+      }, 300)
     },
     nextImage() {
-      if (this.imageList.length > 0) {
-        this.currentImageIndex = (this.currentImageIndex + 1) % this.imageList.length
-        this.previewImage = this.imageList[this.currentImageIndex]
-      }
+      if (this.isSwitching || this.imageList.length <= 1) return
+      this.isSwitching = true
+      this.currentImageIndex = (this.currentImageIndex + 1) % this.imageList.length
+      this.previewImage = this.imageList[this.currentImageIndex]
+      setTimeout(() => {
+        this.isSwitching = false
+      }, 300)
     }
   }
 }
@@ -342,7 +348,9 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: var(--bg-color);
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   z-index: 9999;
   color: var(--text-secondary);
 }
