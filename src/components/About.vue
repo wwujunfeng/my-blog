@@ -24,7 +24,7 @@
           <div class="about-info">
             <div class="info-item">
               <span class="label">姓名：</span>
-              <span class="value">TJX</span>
+              <span class="value">T J X</span>
             </div>
             <div class="info-item">
               <span class="label">邮箱：</span>
